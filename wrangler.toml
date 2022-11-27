@@ -1,0 +1,6 @@
+name = "saerro-monitoring"
+main = "src/index.ts"
+compatibility_date = "2022-11-27"
+
+[triggers]
+crons = [ "*/15 * * * *" ]
