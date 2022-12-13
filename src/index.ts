@@ -68,7 +68,7 @@ export default {
   ): Promise<void> {
     try {
       const res = await fetch(
-        "https://saerro.harasse.rs/graphql?query=%7B%20health%20%7B%20ingest%20ingestReachable%20database%7D%7D"
+        "https://saerro.ps2.live/graphql?query=%7B%20health%20%7B%20ingest%20ingestReachable%20database%7D%7D"
       );
 
       if (res.status !== 200) {
