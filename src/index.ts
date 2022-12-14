@@ -22,7 +22,7 @@ type HealthResponse = {
 const sendAlert = async (
   webhooks: string,
   health?: HealthResponse,
-  downWorlds?: HealthResponse["data"]["health"]["worlds"]
+  downWorlds: HealthResponse["data"]["health"]["worlds"] = []
 ) => {
   const embed = {
     type: "rich",
