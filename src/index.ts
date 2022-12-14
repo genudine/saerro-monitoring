@@ -95,7 +95,7 @@ const checkWorldHealth = (
     .filter((w) => {
       if (w.name === "jaeger") {
         // jaeger isn't important
-        return true;
+        return false;
       }
 
       if (w.name === "genudine" || w.name === "ceres") {
@@ -106,11 +106,19 @@ const checkWorldHealth = (
         return time.getTime() < Date.now() - 1000 * 60 * 60;
       }
 
-      return false;
+      return true;
     });
 };
 
 export default {
+  // async fetch(_1: any, env: Env, ctx: any): Promise<Response> {
+  //   try {
+  //     await this.scheduled(_1, env, ctx);
+  //   } catch (e) {
+  //     return new Response("Failed to run scheduled: " + e);
+  //   }
+  //   return new Response("ok");
+  // },
   async scheduled(
     controller: ScheduledController,
     env: Env,
@@ -136,11 +144,11 @@ export default {
         downWorlds.length > 0
       ) {
         console.error("Sending alert, failed checks", json);
-        await sendAlert(env.DISCORD_WEBHOOK_URL, json);
+        await sendAlert(env.DISCORD_WEBHOOK_URL, json, downWorlds);
       }
     } catch (e) {
       console.error("Sending alert, no response", e);
-      await sendAlert(env.DISCORD_WEBHOOK_URL);
+      await sendAlert(env.DISCORD_WEBHOOK_URL, undefined, []);
     }
   },
 };
